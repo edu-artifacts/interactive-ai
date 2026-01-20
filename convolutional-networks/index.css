@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Pixel grid cell styles */
+.pixel-cell {
+  transition: all 0.15s ease;
+}
+
+.pixel-cell:hover {
+  filter: brightness(1.2);
+}
+
+/* Kernel highlight animation */
+@keyframes kernel-scan {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.kernel-scan {
+  animation: kernel-scan 2s ease-in-out infinite;
+}
+
+/* Feature map pulse */
+@keyframes feature-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.feature-pulse {
+  animation: feature-pulse 1.5s ease-in-out infinite;
+}
+
+/* Convolution step animation */
+@keyframes conv-step {
+  0% { background-color: rgba(59, 130, 246, 0.2); }
+  50% { background-color: rgba(59, 130, 246, 0.6); }
+  100% { background-color: rgba(59, 130, 246, 0.2); }
+}
+
+.conv-active {
+  animation: conv-step 0.5s ease;
+}
+
+/* Network layer flow */
+@keyframes layer-flow {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+.layer-flow {
+  stroke-dasharray: 100;
+  animation: layer-flow 1s ease forwards;
+}
+
+/* Tooltip fade */
+.tooltip-fade {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient bar for progress */
+.progress-gradient {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+/* Slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: #334155;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  margin-top: -6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Formula/code styling */
+.formula {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Matrix cell styles */
+.matrix-cell {
+  transition: all 0.2s ease;
+}
+
+.matrix-cell:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* Neural network node glow */
+.node-glow {
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
+}
+
+/* Activation visualization */
+.activation-bar {
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* Pulse glow effect */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}

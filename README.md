@@ -1,132 +1,105 @@
-# CNN Educational Course
+# Interactive AI
 
-Interactive visualizations for learning Convolutional Neural Networks. Master CNNs through hands-on exploration—no prerequisites required.
+Interactive educational visualizations for understanding AI concepts. Build deep intuition through hands-on exploration.
 
-![Course Preview](https://img.shields.io/badge/React-18-blue) ![Vite](https://img.shields.io/badge/Vite-5-purple) ![TailwindCSS](https://img.shields.io/badge/Tailwind-3-cyan)
+## Projects
+
+| Project | Description | Port | Modules |
+|---------|-------------|------|---------|
+| [Neural Networks](./neural-networks/) | Backpropagation, activations, loss landscapes | 3000 | 4 |
+| [Convolutional Networks](./convolutional-networks/) | CNNs, kernels, pooling, architectures | 3002 | 13 |
+| [Reinforcement Learning](./reinforcement-learning/) | MDPs, Q-learning, policy gradients | 3001 | 4 |
 
 ## Quick Start
 
 ```bash
-make init    # Initialize project (first time only)
-make dev     # Start development server
+# Install all dependencies
+make install
+
+# Start any project
+make dev-nn    # Neural Networks
+make dev-cnn   # Convolutional Networks
+make dev-rl    # Reinforcement Learning
 ```
 
-Then open [http://localhost:3000](http://localhost:3000)
-
-## Available Modules
-
-| Module | Command | Description |
-|--------|---------|-------------|
-| Course Hub | `make run-hub` | Main navigation and progress tracking |
-| CNN Overview | `make run-overview` | End-to-end pipeline visualization |
-| Level 4 | `make run-level4` | Convolution deep dive (1D & 2D) |
-| Level 5 | `make run-level5` | Interactive kernel gallery |
-
-## Course Structure
+## Structure
 
 ```
-CNN Course
-├── Overview (Level 0) ← The "map" showing full pipeline
+interactive-ai/
+├── neural-networks/           # NN fundamentals
+│   ├── tier1/                 # Neuron anatomy, activations, loss landscapes
+│   └── backprop-flow.jsx      # Backpropagation visualization
 │
-├── Prerequisites (Levels 1-3)
-│   ├── Pixels & Images
-│   ├── Dot Products & Matrix Math
-│   └── Basic Neural Network
+├── convolutional-networks/    # CNN deep dive
+│   ├── foundations/           # Pixels, matrices, basic NNs
+│   ├── core/                  # Convolution, kernels, pooling
+│   ├── advanced/              # Training, architectures
+│   └── reference/             # Overview visualization
 │
-├── Core Concepts (Levels 4-8)
-│   ├── ✅ Convolution Deep Dive
-│   ├── ✅ Kernel Gallery
-│   ├── Building Feature Maps
-│   ├── Pooling
-│   └── Classification Head
+├── reinforcement-learning/    # RL concepts
+│   ├── tier1/                 # RL loop, MDPs, discount, policy/value
+│   ├── tier2/                 # (planned) Value methods
+│   ├── tier3/                 # (planned) Policy methods
+│   └── tier4/                 # (planned) Advanced topics
 │
-└── Advanced (Levels 9-12)
-    ├── Training a CNN
-    ├── Deeper Networks
-    ├── Famous Architectures
-    └── Interpretability
+└── docs/                      # Planning documents
 ```
 
-## Features
+## Design Philosophy
 
-- **Interactive Visualizations**: Every concept is hands-on
-- **ELI5 Mode**: Kid-friendly explanations for complex topics
-- **Draw Your Own**: Create custom inputs and kernels
-- **Side-by-Side Comparisons**: See how different kernels behave
-- **Progress Tracking**: Pick up where you left off
-- **Keyboard Shortcuts**: Space (play/pause), arrows (step)
+1. **Interactive First** - Every concept is explorable through direct manipulation
+2. **Visual Intuition** - Prioritize visuals over mathematical notation
+3. **Progressive Complexity** - Each tier builds on the previous
+4. **Immediate Feedback** - Actions have instant visual consequences
+5. **Standalone Modules** - Each visualization works independently
 
-## Project Structure
+## Tech Stack
 
-```
-convolutional-neural-network/
-├── cnn-course-hub.jsx      # Main navigation hub
-├── cnn-overview.jsx        # Full pipeline overview
-├── level-4-convolution.jsx # Convolution deep dive
-├── level-5-kernel-gallery.jsx # Kernel exploration
-├── main.jsx                # Entry point
-├── index.html              # HTML template
-├── index.css               # Tailwind imports
-├── vite.config.js          # Vite configuration
-├── tailwind.config.js      # Tailwind configuration
-├── package.json            # Dependencies
-├── Makefile                # Build commands
-└── README.md               # This file
-```
+- **React 19** - UI components with hooks
+- **Vite 6** - Fast build tooling
+- **Tailwind CSS 4** - Utility-first styling
+- **SVG** - Custom visualizations
+- **Lucide** - Icon library
 
 ## Development
 
 ```bash
-# Install dependencies
-make install
-
-# Start dev server
-make dev
-
-# Build for production
-make build
-
-# Preview production build
-make preview
-
-# Clean build artifacts
-make clean
-
-# Full reset
-make reset
+make help      # Show all commands
+make install   # Install dependencies for all projects
+make build     # Build all projects
+make clean     # Remove build artifacts
 ```
 
-## Tech Stack
+## Module Status
 
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **Lucide React** - Icons
+### Neural Networks (4 modules)
+- ✅ Neuron Anatomy Explorer
+- ✅ Activation Function Playground
+- ✅ Loss Landscape Navigator
+- ✅ Backpropagation Flow
 
-## Keyboard Shortcuts
+### Convolutional Networks (13 modules)
+- ✅ Pixels & Images
+- ✅ Matrix Math
+- ✅ Basic Neural Network
+- ✅ Convolution Deep Dive
+- ✅ Kernel Gallery
+- ✅ Feature Maps
+- ✅ Pooling Layers
+- ✅ Classification Head
+- ✅ Training CNNs
+- ✅ Deeper Networks
+- ✅ Famous Architectures
+- ✅ Interpretability
+- ✅ CNN Overview
 
-| Key | Action |
-|-----|--------|
-| `Space` | Play/Pause animation |
-| `→` | Step forward |
-| `←` | Step backward |
-| `R` | Reset |
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-level`)
-3. Commit changes (`git commit -am 'Add new level'`)
-4. Push to branch (`git push origin feature/new-level`)
-5. Open a Pull Request
+### Reinforcement Learning (4/18 modules)
+- ✅ RL Loop Explorer
+- ✅ MDP Playground
+- ✅ Discount Factor Visualizer
+- ✅ Policy vs Value Visualizer
+- 🔜 14 more planned (Bellman, TD, Q-learning, Policy Gradient, etc.)
 
 ## License
 
-MIT License - feel free to use for educational purposes.
-
-## Acknowledgments
-
-Inspired by:
-- [3Blue1Brown](https://www.youtube.com/c/3blue1brown) - Visual math explanations
-- [Distill.pub](https://distill.pub/) - Interactive ML articles
-- [CNN Explainer](https://poloclub.github.io/cnn-explainer/) - CNN visualization tool
+MIT - Educational use encouraged

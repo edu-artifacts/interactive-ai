@@ -1,33 +1,33 @@
 {
-  "name": "cnn-course",
+  "name": "interactive-ai",
   "version": "1.0.0",
-  "description": "Interactive CNN Educational Course",
-  "main": "index.js",
+  "description": "Interactive educational visualizations for understanding AI concepts",
+  "private": true,
+  "workspaces": [
+    "neural-networks",
+    "convolutional-networks",
+    "reinforcement-learning"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .js,.jsx",
-    "deploy": "npm run build && gh-pages -d dist"
+    "dev:nn": "npm run dev --workspace=neural-networks",
+    "dev:cnn": "npm run dev --workspace=convolutional-networks",
+    "dev:rl": "npm run dev --workspace=reinforcement-learning",
+    "build:nn": "npm run build --workspace=neural-networks",
+    "build:cnn": "npm run build --workspace=convolutional-networks",
+    "build:rl": "npm run build --workspace=reinforcement-learning",
+    "build:all": "npm run build:nn && npm run build:cnn && npm run build:rl",
+    "install:all": "npm install"
   },
-  "keywords": [],
+  "keywords": [
+    "ai",
+    "machine-learning",
+    "neural-networks",
+    "cnn",
+    "reinforcement-learning",
+    "visualization",
+    "education",
+    "interactive"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "lucide-react": "^0.562.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
-    "@vitejs/plugin-react": "^5.1.2",
-    "autoprefixer": "^10.4.23",
-    "eslint": "^9.39.2",
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "vite": "^7.3.1"
-  }
+  "license": "MIT"
 }

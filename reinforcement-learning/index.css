@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Grid world cell styles */
+.grid-cell {
+  transition: all 0.15s ease;
+}
+
+.grid-cell:hover {
+  filter: brightness(1.2);
+}
+
+/* Agent animation */
+@keyframes agent-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.agent-pulse {
+  animation: agent-pulse 1s ease-in-out infinite;
+}
+
+/* Reward flash animation */
+@keyframes reward-flash {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5) translateY(-20px); }
+}
+
+.reward-flash {
+  animation: reward-flash 0.5s ease-out forwards;
+}
+
+/* Value update ripple */
+@keyframes value-ripple {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  100% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+}
+
+.value-update {
+  animation: value-ripple 0.5s ease-out;
+}
+
+/* Policy arrow animation */
+@keyframes arrow-draw {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+.arrow-animated {
+  stroke-dasharray: 100;
+  animation: arrow-draw 0.3s ease forwards;
+}
+
+/* Learning curve line animation */
+@keyframes line-draw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.learning-curve-line {
+  stroke-dasharray: 1000;
+  animation: line-draw 2s ease forwards;
+}
+
+/* Tooltip fade */
+.tooltip-fade {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Episode trail fade */
+.trail-fade {
+  animation: trailFade 2s ease forwards;
+}
+
+@keyframes trailFade {
+  from { opacity: 0.8; }
+  to { opacity: 0.2; }
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+/* Slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: #334155;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  margin-top: -6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Code/formula styling */
+.formula {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* State node glow on hover */
+.state-glow:hover {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+/* Q-value color scale */
+.q-value-low { background-color: #7f1d1d; }
+.q-value-mid { background-color: #713f12; }
+.q-value-high { background-color: #14532d; }
