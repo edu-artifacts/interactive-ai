@@ -85,15 +85,15 @@ reset: ## Full reset - clean and reinitialize
 	$(MAKE) init
 
 # Module targets for running specific visualizations
-run-hub: ## Run the Course Hub (default)
+run-hub: ## Run the Course Hub with navigation (default)
 	@echo 'import React from "react";' > main.jsx
 	@echo 'import { createRoot } from "react-dom/client";' >> main.jsx
 	@echo 'import "./index.css";' >> main.jsx
-	@echo 'import CNNCourseHub from "./cnn-course-hub";' >> main.jsx
+	@echo 'import App from "./App";' >> main.jsx
 	@echo '' >> main.jsx
 	@echo 'createRoot(document.getElementById("root")).render(' >> main.jsx
 	@echo '  <React.StrictMode>' >> main.jsx
-	@echo '    <CNNCourseHub />' >> main.jsx
+	@echo '    <App />' >> main.jsx
 	@echo '  </React.StrictMode>' >> main.jsx
 	@echo ');' >> main.jsx
 	@$(MAKE) dev

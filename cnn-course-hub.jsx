@@ -10,18 +10,18 @@ const CNNCourseHub = ({ onNavigate }) => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [progress, setProgress] = useState({
     overview: 'completed',
-    level1: 'locked',
-    level2: 'locked',
-    level3: 'locked',
+    level1: 'available',
+    level2: 'available',
+    level3: 'available',
     level4: 'available',
     level5: 'available',
-    level6: 'locked',
-    level7: 'locked',
-    level8: 'locked',
-    level9: 'locked',
-    level10: 'locked',
-    level11: 'locked',
-    level12: 'locked',
+    level6: 'available',
+    level7: 'available',
+    level8: 'available',
+    level9: 'available',
+    level10: 'available',
+    level11: 'available',
+    level12: 'available',
   });
 
   // Map level IDs to navigation keys
@@ -89,7 +89,6 @@ const CNNCourseHub = ({ onNavigate }) => {
           icon: Layers,
           details: 'Deep dive into convolution: from 1D signals to 2D images. Understand the sliding window concept and element-wise multiplication.',
           tools: ['1D signal convolution', '2D image convolution', 'Interactive kernel slider'],
-          status: 'available',
         },
         {
           id: 'level5',
@@ -100,7 +99,6 @@ const CNNCourseHub = ({ onNavigate }) => {
           icon: Eye,
           details: 'Explore a gallery of kernels: edge detection, blur, sharpen, emboss. Draw your own images and see what each kernel detects.',
           tools: ['Kernel gallery', 'Custom kernel editor', 'Drawing canvas', 'Side-by-side comparison'],
-          status: 'available',
         },
         {
           id: 'level6',
@@ -194,12 +192,12 @@ const CNNCourseHub = ({ onNavigate }) => {
     tools: ['Full pipeline animation', 'Step-by-step walkthrough', 'Interactive kernel selection', 'Draw your own input'],
   };
 
-  const getStatusColor = (status) => {
+  const getStatusBgColor = (status) => {
     switch (status) {
-      case 'completed': return 'bg-emerald-500';
-      case 'available': return 'bg-violet-500';
-      case 'in_progress': return 'bg-yellow-500';
-      default: return 'bg-slate-600';
+      case 'completed': return 'bg-emerald-500/20';
+      case 'available': return 'bg-violet-500/20';
+      case 'in_progress': return 'bg-yellow-500/20';
+      default: return 'bg-slate-700';
     }
   };
 
@@ -384,9 +382,7 @@ const CNNCourseHub = ({ onNavigate }) => {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                              status === 'locked' ? 'bg-slate-700' : `${getStatusColor(status)}/20`
-                            }`}>
+                            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${getStatusBgColor(status)}`}>
                               <Icon size={24} className={status === 'locked' ? 'text-slate-500' : getTierAccent(tier.color)} />
                             </div>
                             <div>
@@ -450,9 +446,9 @@ const CNNCourseHub = ({ onNavigate }) => {
                               )}
                             </button>
                           ) : (
-                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700/50 rounded-lg text-gray-500">
-                              <Lock size={16} />
-                              Coming Soon
+                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700/50 rounded-lg text-yellow-500/70">
+                              <Sparkles size={16} />
+                              In Development
                             </span>
                           )}
                         </div>
@@ -478,17 +474,17 @@ const CNNCourseHub = ({ onNavigate }) => {
             {/* Milestones */}
             <div className="space-y-8 relative">
               {[
-                { title: 'Foundation', desc: 'Understand images and basic math', color: 'blue', levels: '1-3' },
-                { title: 'Core CNN', desc: 'Master convolution, kernels, and pooling', color: 'violet', levels: '4-8' },
-                { title: 'Training', desc: 'Learn how networks learn', color: 'emerald', levels: '9-10' },
-                { title: 'Expert', desc: 'Explore architectures and interpretability', color: 'yellow', levels: '11-12' },
+                { title: 'Foundation', desc: 'Understand images and basic math', levels: '1-3', bgClass: 'bg-blue-500', textClass: 'text-blue-400', shadowClass: 'shadow-blue-500/30' },
+                { title: 'Core CNN', desc: 'Master convolution, kernels, and pooling', levels: '4-8', bgClass: 'bg-violet-500', textClass: 'text-violet-400', shadowClass: 'shadow-violet-500/30' },
+                { title: 'Training', desc: 'Learn how networks learn', levels: '9-10', bgClass: 'bg-emerald-500', textClass: 'text-emerald-400', shadowClass: 'shadow-emerald-500/30' },
+                { title: 'Expert', desc: 'Explore architectures and interpretability', levels: '11-12', bgClass: 'bg-yellow-500', textClass: 'text-yellow-400', shadowClass: 'shadow-yellow-500/30' },
               ].map((milestone, idx) => (
                 <div key={milestone.title} className="flex items-center gap-6 pl-2">
-                  <div className={`w-8 h-8 rounded-full bg-${milestone.color}-500 flex items-center justify-center z-10 shadow-lg shadow-${milestone.color}-500/30`}>
+                  <div className={`w-8 h-8 rounded-full ${milestone.bgClass} flex items-center justify-center z-10 shadow-lg ${milestone.shadowClass}`}>
                     {idx + 1}
                   </div>
                   <div>
-                    <h3 className={`font-semibold text-${milestone.color}-400`}>{milestone.title}</h3>
+                    <h3 className={`font-semibold ${milestone.textClass}`}>{milestone.title}</h3>
                     <p className="text-sm text-gray-400">{milestone.desc}</p>
                     <span className="text-xs text-gray-500">Levels {milestone.levels}</span>
                   </div>
