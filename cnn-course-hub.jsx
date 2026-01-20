@@ -6,7 +6,7 @@ import {
   ArrowRight, Star, Info
 } from 'lucide-react';
 
-const CNNCourseHub = () => {
+const CNNCourseHub = ({ onNavigate }) => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [progress, setProgress] = useState({
     overview: 'completed',
@@ -23,6 +23,19 @@ const CNNCourseHub = () => {
     level11: 'locked',
     level12: 'locked',
   });
+
+  // Map level IDs to navigation keys
+  const levelRoutes = {
+    overview: 'overview',
+    level4: 'level4',
+    level5: 'level5',
+  };
+
+  const handleLaunch = (levelId) => {
+    if (onNavigate && levelRoutes[levelId]) {
+      onNavigate(levelRoutes[levelId]);
+    }
+  };
 
   const tiers = [
     {
@@ -221,6 +234,10 @@ const CNNCourseHub = () => {
   const totalCount = Object.keys(progress).length;
   const progressPercent = Math.round((completedCount / totalCount) * 100);
 
+  const isLevelAvailable = (levelId) => {
+    return levelRoutes[levelId] !== undefined;
+  };
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 text-white">
       {/* Animated background */}
@@ -317,14 +334,14 @@ const CNNCourseHub = () => {
                   ))}
                 </div>
               </div>
-              <a
-                href="./cnn-overview.jsx"
+              <button
+                onClick={() => handleLaunch('overview')}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-violet-600 rounded-lg hover:from-blue-500 hover:to-violet-500 transition-all shadow-lg shadow-violet-500/20"
               >
                 <Play size={18} />
                 Launch Overview
                 <ArrowRight size={18} />
-              </a>
+              </button>
             </div>
           )}
         </div>
@@ -350,6 +367,7 @@ const CNNCourseHub = () => {
                   const status = level.status || progress[level.id];
                   const isSelected = selectedLevel === level.id;
                   const Icon = level.icon;
+                  const canLaunch = isLevelAvailable(level.id) && status !== 'locked';
 
                   return (
                     <div key={level.id}>
@@ -410,26 +428,33 @@ const CNNCourseHub = () => {
                               ))}
                             </div>
                           </div>
-                          <a
-                            href={`./level-${level.number}-${level.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jsx`}
-                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                              status === 'completed'
-                                ? 'bg-slate-700 hover:bg-slate-600 text-gray-300'
-                                : 'bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-500/20'
-                            }`}
-                          >
-                            {status === 'completed' ? (
-                              <>
-                                <Eye size={16} />
-                                Review
-                              </>
-                            ) : (
-                              <>
-                                <Play size={16} />
-                                Start Level
-                              </>
-                            )}
-                          </a>
+                          {canLaunch ? (
+                            <button
+                              onClick={() => handleLaunch(level.id)}
+                              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                                status === 'completed'
+                                  ? 'bg-slate-700 hover:bg-slate-600 text-gray-300'
+                                  : 'bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-500/20'
+                              }`}
+                            >
+                              {status === 'completed' ? (
+                                <>
+                                  <Eye size={16} />
+                                  Review
+                                </>
+                              ) : (
+                                <>
+                                  <Play size={16} />
+                                  Start Level
+                                </>
+                              )}
+                            </button>
+                          ) : (
+                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700/50 rounded-lg text-gray-500">
+                              <Lock size={16} />
+                              Coming Soon
+                            </span>
+                          )}
                         </div>
                       )}
                     </div>
