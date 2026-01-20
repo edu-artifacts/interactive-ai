@@ -27,8 +27,18 @@ const CNNCourseHub = ({ onNavigate }) => {
   // Map level IDs to navigation keys
   const levelRoutes = {
     overview: 'overview',
+    level1: 'level1',
+    level2: 'level2',
+    level3: 'level3',
     level4: 'level4',
     level5: 'level5',
+    level6: 'level6',
+    level7: 'level7',
+    level8: 'level8',
+    level9: 'level9',
+    level10: 'level10',
+    level11: 'level11',
+    level12: 'level12',
   };
 
   const handleLaunch = (levelId) => {
