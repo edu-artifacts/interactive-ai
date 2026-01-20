@@ -13,6 +13,13 @@ import MDPPlayground from './tier1/mdp-playground';
 import DiscountFactorVisualizer from './tier1/discount-factor';
 import PolicyValueVisualizer from './tier1/policy-value-viz';
 
+// Import Tier 2 modules
+import BellmanExplorer from './tier2/bellman-explorer';
+import DynamicProgramming from './tier2/dynamic-programming';
+import MonteCarlo from './tier2/monte-carlo';
+import TDLearning from './tier2/td-learning';
+import QLearningVsSARSA from './tier2/q-learning-sarsa';
+
 const App = () => {
   const [activeModule, setActiveModule] = useState(null);
 
@@ -67,40 +74,40 @@ const App = () => {
           name: 'Bellman Equation Explorer',
           description: 'Visualize the recursive structure of value functions',
           icon: GitBranch,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: BellmanExplorer,
         },
         {
           id: 'dp',
           name: 'Dynamic Programming Lab',
           description: 'See Policy Iteration and Value Iteration in action',
           icon: Calculator,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: DynamicProgramming,
         },
         {
           id: 'monte-carlo',
           name: 'Monte Carlo Methods',
           description: 'Learn from complete episode returns',
           icon: Dice5,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: MonteCarlo,
         },
         {
           id: 'td',
           name: 'TD Learning Playground',
           description: 'Understand bootstrapping and TD error',
           icon: LineChart,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: TDLearning,
         },
         {
           id: 'q-sarsa',
           name: 'Q-Learning vs SARSA Arena',
           description: 'Compare on-policy vs off-policy learning',
           icon: Swords,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: QLearningVsSARSA,
         },
       ],
     },
@@ -316,7 +323,7 @@ const App = () => {
         <div className="mt-16 pt-8 border-t border-slate-800 text-center">
           <p className="text-slate-500 text-sm">
             Open source educational project •{' '}
-            <span className="text-slate-400">18 interactive visualizations planned • 4 complete</span>
+            <span className="text-slate-400">18 interactive visualizations planned • 9 complete</span>
           </p>
           <p className="text-slate-600 text-xs mt-2">
             Run <code className="bg-slate-800 px-2 py-1 rounded">make help</code> for available commands
