@@ -1,11 +1,43 @@
-import React, { useState, useMemo } from 'react';
-import { RefreshCw, Zap, Shield, TrendingUp } from 'lucide-react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { RefreshCw, Zap, Shield, TrendingUp, Keyboard } from 'lucide-react';
 
 const PPOVisualizer = () => {
   // Parameters
   const [epsilon, setEpsilon] = useState(0.2);
   const [ratio, setRatio] = useState(1.0);
   const [advantage, setAdvantage] = useState(1.0);
+  const [activeParam, setActiveParam] = useState('ratio'); // which param keyboard controls
+
+  // Keyboard controls
+  const handleKeyDown = useCallback((e) => {
+    const step = e.shiftKey ? 0.1 : 0.02;
+
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      const delta = e.key === 'ArrowRight' ? step : -step;
+
+      if (activeParam === 'ratio') {
+        setRatio(prev => Math.max(0, Math.min(3, prev + delta)));
+      } else if (activeParam === 'advantage') {
+        setAdvantage(prev => Math.max(-2, Math.min(2, prev + delta)));
+      } else if (activeParam === 'epsilon') {
+        setEpsilon(prev => Math.max(0.05, Math.min(0.5, prev + delta * 0.5)));
+      }
+    }
+
+    // Tab to switch active parameter
+    if (e.key === 'Tab' && !e.ctrlKey) {
+      e.preventDefault();
+      const params = ['ratio', 'advantage', 'epsilon'];
+      const idx = params.indexOf(activeParam);
+      setActiveParam(params[(idx + 1) % params.length]);
+    }
+  }, [activeParam]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   // Compute clipped objective
   const computeObjective = useMemo(() => {
@@ -55,9 +87,12 @@ const PPOVisualizer = () => {
               <h3 className="font-semibold mb-4">Parameters</h3>
 
               <div className="space-y-4">
-                <div>
+                <div
+                  className={`p-2 rounded-lg transition-all cursor-pointer ${activeParam === 'epsilon' ? 'bg-purple-900/30 ring-1 ring-purple-500' : 'hover:bg-slate-700/50'}`}
+                  onClick={() => setActiveParam('epsilon')}
+                >
                   <div className="flex justify-between mb-2">
-                    <span className="text-slate-400">ε (clip range)</span>
+                    <span className={activeParam === 'epsilon' ? 'text-purple-300' : 'text-slate-400'}>ε (clip range)</span>
                     <span className="font-mono text-purple-400">{epsilon.toFixed(2)}</span>
                   </div>
                   <input
@@ -67,9 +102,12 @@ const PPOVisualizer = () => {
                   />
                 </div>
 
-                <div>
+                <div
+                  className={`p-2 rounded-lg transition-all cursor-pointer ${activeParam === 'ratio' ? 'bg-blue-900/30 ring-1 ring-blue-500' : 'hover:bg-slate-700/50'}`}
+                  onClick={() => setActiveParam('ratio')}
+                >
                   <div className="flex justify-between mb-2">
-                    <span className="text-slate-400">π(a|s)/π_old(a|s) (ratio)</span>
+                    <span className={activeParam === 'ratio' ? 'text-blue-300' : 'text-slate-400'}>π(a|s)/π_old(a|s) (ratio)</span>
                     <span className="font-mono text-blue-400">{ratio.toFixed(2)}</span>
                   </div>
                   <input
@@ -79,9 +117,12 @@ const PPOVisualizer = () => {
                   />
                 </div>
 
-                <div>
+                <div
+                  className={`p-2 rounded-lg transition-all cursor-pointer ${activeParam === 'advantage' ? 'bg-green-900/30 ring-1 ring-green-500' : 'hover:bg-slate-700/50'}`}
+                  onClick={() => setActiveParam('advantage')}
+                >
                   <div className="flex justify-between mb-2">
-                    <span className="text-slate-400">Â (advantage estimate)</span>
+                    <span className={activeParam === 'advantage' ? 'text-green-300' : 'text-slate-400'}>Â (advantage estimate)</span>
                     <span className={`font-mono ${advantage >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                       {advantage.toFixed(2)}
                     </span>
@@ -91,6 +132,12 @@ const PPOVisualizer = () => {
                     onChange={(e) => setAdvantage(parseFloat(e.target.value))}
                     className="w-full"
                   />
+                </div>
+
+                {/* Keyboard hint */}
+                <div className="flex items-center gap-2 text-xs text-slate-500 pt-2 border-t border-slate-700">
+                  <Keyboard size={14} />
+                  <span>Tab to switch • ←→ to adjust • Shift for larger steps</span>
                 </div>
               </div>
             </div>

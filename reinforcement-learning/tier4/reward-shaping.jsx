@@ -143,10 +143,10 @@ const RewardShaping = () => {
   };
 
   const shapingModes = [
-    { id: 'none', name: 'Sparse Only', color: 'slate', desc: 'Only reward at goal', safe: true },
-    { id: 'distance', name: 'Distance-based', color: 'yellow', desc: 'Reward for getting closer', safe: false },
-    { id: 'potential', name: 'PBRS', color: 'green', desc: 'γΦ(s\')-Φ(s) shaping', safe: true },
-    { id: 'dense', name: 'Dense', color: 'purple', desc: 'Heavy intermediate rewards', safe: false }
+    { id: 'none', name: 'Sparse Only', color: '#64748b', bgColor: 'bg-slate-600', desc: 'Only reward at goal', safe: true },
+    { id: 'distance', name: 'Distance-based', color: '#eab308', bgColor: 'bg-yellow-600', desc: 'Reward for getting closer', safe: false },
+    { id: 'potential', name: 'PBRS', color: '#22c55e', bgColor: 'bg-green-600', desc: 'γΦ(s\')-Φ(s) shaping', safe: true },
+    { id: 'dense', name: 'Dense', color: '#a855f7', bgColor: 'bg-purple-600', desc: 'Heavy intermediate rewards', safe: false }
   ];
 
   const getGreedyAction = (x, y) => {
@@ -175,7 +175,7 @@ const RewardShaping = () => {
                 key={mode.id}
                 onClick={() => { setShapingMode(mode.id); reset(); }}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
-                  shapingMode === mode.id ? `bg-${mode.color}-600` : 'bg-slate-700 hover:bg-slate-600'
+                  shapingMode === mode.id ? mode.bgColor : 'bg-slate-700 hover:bg-slate-600'
                 }`}
               >
                 {!mode.safe && <AlertTriangle size={14} className="text-yellow-400" />}
@@ -338,15 +338,19 @@ const RewardShaping = () => {
               <div className="space-y-2">
                 {shapingModes.map(mode => (
                   <div key={mode.id} className="flex items-center gap-3">
-                    <span className={`w-24 text-sm ${
-                      mode.id === shapingMode ? `text-${mode.color}-400` : 'text-slate-400'
-                    }`}>
+                    <span
+                      className="w-24 text-sm"
+                      style={{ color: mode.id === shapingMode ? mode.color : '#94a3b8' }}
+                    >
                       {mode.name}
                     </span>
                     <div className="flex-1 h-4 bg-slate-700 rounded overflow-hidden">
                       <div
-                        className={`h-full bg-${mode.color}-500`}
-                        style={{ width: `${Math.max(0, avgReturn(mode.id) / 15 * 100)}%` }}
+                        className="h-full transition-all"
+                        style={{
+                          width: `${Math.max(0, avgReturn(mode.id) / 15 * 100)}%`,
+                          backgroundColor: mode.color
+                        }}
                       />
                     </div>
                     <span className="font-mono text-sm w-16">{avgReturn(mode.id).toFixed(1)}</span>

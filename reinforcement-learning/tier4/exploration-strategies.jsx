@@ -160,10 +160,10 @@ const ExplorationStrategies = () => {
   }, [strategies.boltzmann.Q]);
 
   const strategyInfo = {
-    greedy: { name: 'Pure Greedy', color: 'red', desc: 'Always pick best-known arm' },
-    epsilon: { name: 'ε-Greedy (ε=0.1)', color: 'blue', desc: 'Random 10%, greedy 90%' },
-    ucb: { name: 'UCB (c=2)', color: 'green', desc: 'Optimism in face of uncertainty' },
-    boltzmann: { name: 'Boltzmann (τ=0.5)', color: 'purple', desc: 'Softmax over Q-values' }
+    greedy: { name: 'Pure Greedy', color: '#ef4444', desc: 'Always pick best-known arm' },
+    epsilon: { name: 'ε-Greedy (ε=0.1)', color: '#3b82f6', desc: 'Random 10%, greedy 90%' },
+    ucb: { name: 'UCB (c=2)', color: '#22c55e', desc: 'Optimism in face of uncertainty' },
+    boltzmann: { name: 'Boltzmann (τ=0.5)', color: '#a855f7', desc: 'Softmax over Q-values' }
   };
 
   return (
@@ -231,11 +231,14 @@ const ExplorationStrategies = () => {
             const optimalPct = strategy.actions.filter(a => a === 3).length / Math.max(1, strategy.actions.length) * 100;
 
             return (
-              <div key={key} className={`bg-slate-800 rounded-xl p-6 border-2 ${
-                selectedStrategy === key ? `border-${info.color}-500` : 'border-transparent'
-              }`} onClick={() => setSelectedStrategy(key)}>
+              <div
+                key={key}
+                className="bg-slate-800 rounded-xl p-6 border-2 cursor-pointer transition-all hover:scale-[1.02]"
+                style={{ borderColor: selectedStrategy === key ? info.color : 'transparent' }}
+                onClick={() => setSelectedStrategy(key)}
+              >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className={`font-semibold text-${info.color}-400`}>{info.name}</h3>
+                  <h3 className="font-semibold" style={{ color: info.color }}>{info.name}</h3>
                   <div className="text-sm text-slate-400">{info.desc}</div>
                 </div>
 
@@ -301,8 +304,12 @@ const ExplorationStrategies = () => {
               return (
                 <div key={key} className="flex-1 flex flex-col items-center">
                   <div
-                    className={`w-full rounded-t bg-${strategyInfo[key].color}-500`}
-                    style={{ height: `${(strategy.totalReward / maxReward) * 100}%`, minHeight: '4px' }}
+                    className="w-full rounded-t transition-all"
+                    style={{
+                      height: `${(strategy.totalReward / maxReward) * 100}%`,
+                      minHeight: '4px',
+                      backgroundColor: strategyInfo[key].color
+                    }}
                   />
                   <span className="text-xs text-slate-400 mt-2">{strategyInfo[key].name.split(' ')[0]}</span>
                   <span className="font-mono text-sm">{strategy.totalReward.toFixed(0)}</span>
