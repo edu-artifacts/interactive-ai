@@ -20,6 +20,19 @@ import MonteCarlo from './tier2/monte-carlo';
 import TDLearning from './tier2/td-learning';
 import QLearningVsSARSA from './tier2/q-learning-sarsa';
 
+// Import Tier 3 modules
+import PolicyGradient from './tier3/policy-gradient';
+import REINFORCE from './tier3/reinforce';
+import ActorCritic from './tier3/actor-critic';
+import AdvantageEstimation from './tier3/advantage-estimation';
+
+// Import Tier 4 modules
+import ExplorationStrategies from './tier4/exploration-strategies';
+import ExperienceReplay from './tier4/experience-replay';
+import TargetNetwork from './tier4/target-network';
+import PPOVisualizer from './tier4/ppo-visualizer';
+import RewardShaping from './tier4/reward-shaping';
+
 const App = () => {
   const [activeModule, setActiveModule] = useState(null);
 
@@ -121,32 +134,32 @@ const App = () => {
           name: 'Policy Gradient Intuition',
           description: 'Directly optimize the policy',
           icon: Gauge,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: PolicyGradient,
         },
         {
           id: 'reinforce',
           name: 'REINFORCE Step-by-Step',
           description: 'Monte Carlo policy gradient algorithm',
           icon: RefreshCw,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: REINFORCE,
         },
         {
           id: 'actor-critic',
           name: 'Actor-Critic Architecture',
           description: 'Combine policy and value learning',
           icon: Theater,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: ActorCritic,
         },
         {
           id: 'gae',
           name: 'Advantage Estimation',
           description: 'Understand GAE and variance reduction',
           icon: BarChart3,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: AdvantageEstimation,
         },
       ],
     },
@@ -158,42 +171,42 @@ const App = () => {
         {
           id: 'exploration',
           name: 'Exploration Strategies',
-          description: 'Compare ε-greedy, UCB, Thompson Sampling',
+          description: 'Compare ε-greedy, UCB, Boltzmann',
           icon: Search,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: ExplorationStrategies,
         },
         {
           id: 'replay',
           name: 'Experience Replay Buffer',
           description: 'Understand why and how replay works',
           icon: Database,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: ExperienceReplay,
         },
         {
           id: 'target-network',
           name: 'Target Network Stabilization',
           description: 'Visualize DQN stability techniques',
           icon: Crosshair,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: TargetNetwork,
         },
         {
           id: 'ppo',
           name: 'PPO Trust Region',
           description: 'Understand clipped surrogate objective',
           icon: Scissors,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: PPOVisualizer,
         },
         {
           id: 'reward-shaping',
           name: 'Reward Shaping Sandbox',
           description: 'See how reward design affects learning',
           icon: Trophy,
-          status: 'coming',
-          component: null,
+          status: 'complete',
+          component: RewardShaping,
         },
       ],
     },
@@ -323,7 +336,7 @@ const App = () => {
         <div className="mt-16 pt-8 border-t border-slate-800 text-center">
           <p className="text-slate-500 text-sm">
             Open source educational project •{' '}
-            <span className="text-slate-400">18 interactive visualizations planned • 9 complete</span>
+            <span className="text-slate-400">18 interactive visualizations • All complete! 🎉</span>
           </p>
           <p className="text-slate-600 text-xs mt-2">
             Run <code className="bg-slate-800 px-2 py-1 rounded">make help</code> for available commands
