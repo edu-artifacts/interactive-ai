@@ -1,8 +1,16 @@
-import { defineConfig } from "vite";
+import { defineConfig, createLogger } from "vite";
 import react from "@vitejs/plugin-react-swc";
+
+const logger = createLogger();
+const originalWarn = logger.warn.bind(logger);
+logger.warn = (msg, options) => {
+  if (msg.includes('vision_bundle')) return;
+  originalWarn(msg, options);
+};
 
 export default defineConfig({
   plugins: [react()],
+  customLogger: logger,
   base: './',
   server: {
     port: 3000,

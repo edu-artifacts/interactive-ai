@@ -29,18 +29,10 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
-        run: |
-          cd landing && npm install
-          cd ../convolutional-networks && npm install
-          cd ../neural-networks && npm install
-          cd ../reinforcement-learning && npm install
+        run: npm install
 
       - name: Build all projects
-        run: |
-          cd landing && npm run build
-          cd ../convolutional-networks && npm run build
-          cd ../neural-networks && npm run build
-          cd ../reinforcement-learning && npm run build
+        run: npm run build
 
       - name: Prepare deployment
         run: |
