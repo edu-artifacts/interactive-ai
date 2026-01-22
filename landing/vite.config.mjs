@@ -8,6 +8,7 @@ export default defineConfig({
     port: 3000,
     host: true,
     open: false,
+    sourcemapIgnoreList: (sourcePath) => sourcePath.includes('node_modules'),
   },
   esbuild: {
     target: 'es2022',
